@@ -34,7 +34,11 @@ public class Disciplina {
     public int getCreditos() {
         return creditos;
     }
-    
+
+    protected void finalize() throws Throwable {
+		System.out.println("Destruindo objeto: " + this);
+	}
+
     public String toString() {
         String resposta = "DISCIPLINA: " + nome + '\n';
         resposta += "CÓDIGO: " + codigo + '\n';
@@ -42,5 +46,4 @@ public class Disciplina {
         resposta += "CRÉDITOS: " + creditos + '\n';
         return resposta;
     }    
-    
 }
