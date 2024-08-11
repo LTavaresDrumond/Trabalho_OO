@@ -1,8 +1,10 @@
 import javax.swing.JOptionPane;
 
 import cadastros.CadastroAluno;
+import cadastros.CadastroDisciplina;
 import cadastros.CadastroProfessor;
 import view.MenuAluno;
+import view.MenuDisciplina;
 import view.MenuPrincipal;
 import view.MenuProfessor;
 
@@ -10,10 +12,12 @@ public class Principal {
 
 	static CadastroAluno cadAluno;
 	static CadastroProfessor cadProfessor;
+	static CadastroDisciplina cadDisciplina;
 	
 	public static void main(String[] args) {
 		cadAluno = new CadastroAluno();
 		cadProfessor = new CadastroProfessor();
+		cadDisciplina = new CadastroDisciplina();
 		
 		int opcao = 0; 
 		
@@ -27,7 +31,7 @@ public class Principal {
 					MenuProfessor.menuProfessor(cadProfessor);
 				break;
 				case 3: 
-					JOptionPane.showMessageDialog(null, "Cadastro de disciplinas a ser implementado");
+					MenuDisciplina.menuDisciplina(cadDisciplina);
 				break;
 				case 4: 
 					JOptionPane.showMessageDialog(null, "Cadastro de turmas a ser implementado");
