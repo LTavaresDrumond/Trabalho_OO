@@ -11,7 +11,7 @@ public class MenuAluno {
 		String nome = lerNome();
 		String cpf = lerCPF();
 		String email = lerEmail();
-		String matricula = lerMatricula(); 
+		String matricula = lerMatricula();
 		String curso = lerCurso();
 		return new Aluno(nome, cpf, email, matricula, curso);
 	}
@@ -37,7 +37,7 @@ public class MenuAluno {
 	}
 
 	public static void menuAluno(CadastroAluno cadAluno) {
-		String txt = "Informe a opção desejada \n"
+		String txt = "Informe a opção desejada: \n"
 				+ "1 - Cadastrar aluno\n"
 				+ "2 - Pesquisar aluno\n"
 				+ "3 - Atualizar aluno\n"
