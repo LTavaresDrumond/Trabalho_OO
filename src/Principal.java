@@ -3,22 +3,30 @@ import javax.swing.JOptionPane;
 import cadastros.CadastroAluno;
 import cadastros.CadastroDisciplina;
 import cadastros.CadastroProfessor;
+import cadastros.CadastroTurma;
+import exceptions.CampoEmBrancoException;
+import exceptions.DisciplinaNaoAtribuidaException;
+import exceptions.ProfessorNaoAtribuidoException;
+
 import org.w3c.dom.ls.LSOutput;
 import view.MenuAluno;
 import view.MenuDisciplina;
 import view.MenuPrincipal;
 import view.MenuProfessor;
+import view.MenuTurma;
 
 public class Principal {
 
 	static CadastroAluno cadAluno;
 	static CadastroProfessor cadProfessor;
 	static CadastroDisciplina cadDisciplina;
+	static CadastroTurma cadTurma;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CampoEmBrancoException, ProfessorNaoAtribuidoException, DisciplinaNaoAtribuidaException {
 		cadAluno = new CadastroAluno();
 		cadProfessor = new CadastroProfessor();
 		cadDisciplina = new CadastroDisciplina();
+		cadTurma = new CadastroTurma();
 
 		JOptionPane.showMessageDialog(null,"""
 				hhahahha
@@ -42,7 +50,7 @@ public class Principal {
 					MenuDisciplina.menuDisciplina(cadDisciplina);
 				break;
 				case 4: 
-					JOptionPane.showMessageDialog(null, "Cadastro de turmas a ser implementado");
+					MenuTurma.menuTurma(cadTurma);
 				break;
 				case 0: 
 				break;
