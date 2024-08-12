@@ -1,6 +1,6 @@
 package app;
 
-//import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Turma {
@@ -23,7 +23,7 @@ public class Turma {
         this.numVagas = numVagas;
         this.professor = professor;
         this.disciplina = disciplina;
-        //this.alunos =  new List<Aluno>();
+        this.alunos = new ArrayList<Aluno>();
     }
 
     public String getCodigo() {
@@ -50,7 +50,5 @@ public class Turma {
         //falta imprimir os alunos
         return resposta;
     }
-
-    
     
 }
