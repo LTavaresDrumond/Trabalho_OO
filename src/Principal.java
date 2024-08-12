@@ -4,6 +4,7 @@ import cadastros.CadastroAluno;
 import cadastros.CadastroDisciplina;
 import cadastros.CadastroProfessor;
 import cadastros.CadastroTurma;
+import exceptions.CampoEmBrancoException;
 import org.w3c.dom.ls.LSOutput;
 import view.*;
 
@@ -14,7 +15,7 @@ public class Principal {
 	static CadastroDisciplina cadDisciplina;
 	static CadastroTurma cadTurma;
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CampoEmBrancoException {
 		cadAluno = new CadastroAluno();
 		cadProfessor = new CadastroProfessor();
 		cadDisciplina = new CadastroDisciplina();
@@ -40,7 +41,7 @@ public class Principal {
 				case 0: 
 				break;
 				default: 
-					JOptionPane.showMessageDialog(null, "Opcao invalida");
+					JOptionPane.showMessageDialog(null, "A Opção escolhida não é válida");
 					opcao = -1;
 				break;
 			}
