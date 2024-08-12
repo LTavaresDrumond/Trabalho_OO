@@ -48,6 +48,15 @@ public class CadastroAluno {
 		}
 		return resposta;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (Aluno a : alunos) {
+			sb.append(a.toString()).append("\n");
+		}
+		return sb.toString();
+	}
 }
 
 

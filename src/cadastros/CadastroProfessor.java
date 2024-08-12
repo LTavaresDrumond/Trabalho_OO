@@ -48,6 +48,15 @@ public class CadastroProfessor {
 		}
 		return resposta;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (Professor p : professores) {
+			sb.append(p.toString() + "\n");
+		}
+		return sb.toString();
+	}
 }
 
 

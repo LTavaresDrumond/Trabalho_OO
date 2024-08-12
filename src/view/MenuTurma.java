@@ -15,14 +15,19 @@ import java.util.List;
 
 public class MenuTurma {
 
+    static CadastroProfessor cadastroProfessor = new CadastroProfessor();
+    static CadastroDisciplina cadastroDisciplina = new CadastroDisciplina();
+    static CadastroAluno cadastroAluno = new CadastroAluno();
+
     public static Turma dadosNovaTurma() {
-        String diaHora = lerNome();
+        String diaHora = lerDiaHora();
         String codigo = lerCodigo();
         String semestre = lerSemestre();
         int numVagas = lerNumVagas();
         Professor professor = lerProfessor();
         Disciplina disciplina = lerDisciplina();
-        private List<Aluno> alunos = new ArrayList<>();
+        List<Aluno> alunos = lerAluno(numVagas);
+
         return new Turma(codigo, diaHora, semestre, numVagas, professor, disciplina, alunos);
     }
 
@@ -38,37 +43,50 @@ public class MenuTurma {
         return JOptionPane.showInputDialog("Informe o semestre da turma: ");
     }
 
-    private static String lerNome() {
+    private static String lerDiaHora() {
         return JOptionPane.showInputDialog("Informe o dia/Hora da turma: ");
     }
 
     private static Professor lerProfessor() {
-        String matriculaFUB = JOptionPane.showInputDialog("Informe a matrículaFUB do professor da turma: ");
-        CadastroProfessor cadProfessor = new CadastroProfessor();
-        Professor p = cadProfessor.pesquisarProfessor(matriculaFUB);
-        return p;
+        String matriculaFUB = JOptionPane.showInputDialog("Informe a matrícula do professor(a):\n " + cadastroProfessor.toString());
+        Professor professor = cadastroProfessor.pesquisarProfessor(matriculaFUB);
+        return professor;
     }
 
     private static Disciplina lerDisciplina() {
-        String codigo = JOptionPane.showInputDialog("Informe o código da disciplina da turma: ");
-        CadastroDisciplina cadastroDisciplina = new CadastroDisciplina();
-        Disciplina d = cadastroDisciplina.pesquisarDisciplina(codigo);
-        return d;
+        String codigoDisciplina = JOptionPane.showInputDialog("Informe o código da disciplina:\n " + cadastroDisciplina.toString());
+        Disciplina disciplina = cadastroDisciplina.pesquisarDisciplina(codigoDisciplina);
+        return disciplina;
     }
 
-    public List<> lerAluno() {
-        String matricula = JOptionPane.showInputDialog("Informe a matrícula do aluno para adicionar na turma: ");
-        CadastroAluno cadastroAluno = new CadastroAluno();
-        Aluno a = cadastroAluno.pesquisarAluno(matricula);
-        if (a != null) {
-            alunos.add(a);
+    private static List<Aluno> lerAluno(int numVagas) {
+        List<Aluno> alunos = new ArrayList<>();
+        int vagasDisponiveis = numVagas;
+        for (int i = 0; i < numVagas; i++) {
+            String matriculaAluno = JOptionPane.showInputDialog("Informe a matrícula do aluno: há "
+                            + vagasDisponiveis + " vagas!\n" + cadastroAluno.toString());
+
+            if (matriculaAluno.isEmpty()) {
+                break;
+            }
+            Aluno aluno = cadastroAluno.pesquisarAluno(matriculaAluno);
+            if (aluno == null) {
+                JOptionPane.showMessageDialog(null, "Aluno não encontrado.");
+                i--;
+            } else if(alunos.contains(aluno)){
+                JOptionPane.showMessageDialog(null, "Aluno já matriculado.");
+                i--;
+            }else {
+                alunos.add(aluno);
+                vagasDisponiveis--;
+            }
         }
         return alunos;
     }
 
 
 
-    public static void menuDisciplina(CadastroTurma cadTurma) {
+    public static void menuTurma(CadastroTurma cadTurma) {
         String txt = """
                 Informe a opção desejada:
                 1 - Cadastrar Turma
@@ -114,6 +132,7 @@ public class MenuTurma {
                         JOptionPane.showMessageDialog(null, "Turma removida do cadastro");
                         System.gc();
                     }
+                    break;
                 case 5:
                     codigo = lerCodigo();
                     cadTurma.imprimirListaPresenca(codigo);

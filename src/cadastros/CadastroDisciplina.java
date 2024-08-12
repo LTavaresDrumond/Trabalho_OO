@@ -48,6 +48,15 @@ public class CadastroDisciplina {
 		}
 		return resposta;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (Disciplina d : disciplinas) {
+			sb.append(d.toString() + "\n");
+		}
+		return sb.toString();
+	}
 }
 
 
