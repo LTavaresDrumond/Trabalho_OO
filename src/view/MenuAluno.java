@@ -3,6 +3,7 @@ package view;
 import javax.swing.JOptionPane;
 
 import app.Aluno;
+import app.Professor;
 import cadastros.CadastroAluno;
 import exceptions.CampoEmBrancoException;
 
@@ -64,7 +65,7 @@ public class MenuAluno {
 				+ "3 - Atualizar aluno\n"
 				+ "4 - Remover aluno\n"
 				+ "0 - Voltar para menu anterior";
-		
+
 		int opcao=-1;
 		do {
 			try {
@@ -86,13 +87,19 @@ public class MenuAluno {
 						Aluno a = cadAluno.pesquisarAluno(matricula);
 						if (a != null) {
 							JOptionPane.showMessageDialog(null, a.toString());
+							break;
 						} else {
 							JOptionPane.showMessageDialog(null, "essa matrícula não existe ou está errada!");
+							break;
 						}
-						break;
 
 					case 3:
 						matricula = lerMatricula();
+						Aluno al = cadAluno.pesquisarAluno(matricula);
+						if (al == null) {
+							JOptionPane.showMessageDialog(null, "Essa matrícula não existe ou está errada!");
+							break;
+						}
 						Aluno novoCadastro = dadosNovoAluno();
 						boolean atualizado = cadAluno.atualizarAluno(matricula, novoCadastro);
 						if (atualizado) {
@@ -107,6 +114,7 @@ public class MenuAluno {
 						if (removido) {
 							JOptionPane.showMessageDialog(null, "o Aluno foi removido com sucesso!");
 							System.gc();
+							break;
 						}
 
 					default:
