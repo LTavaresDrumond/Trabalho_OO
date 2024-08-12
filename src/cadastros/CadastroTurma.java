@@ -60,5 +60,14 @@ public class CadastroTurma {
             JOptionPane.showMessageDialog(null, t);
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder resposta = new StringBuilder();
+        for (Turma t : turmas) {
+            resposta.append(t.toString()).append("\n");
+        }
+        return resposta.toString();
+    }
     
 }

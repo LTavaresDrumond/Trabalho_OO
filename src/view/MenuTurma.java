@@ -10,26 +10,18 @@ import java.util.List;
 
 public class MenuTurma {
 
-    private static CadastroProfessor cadastroProfessor;
-    private static CadastroAluno cadastroAluno;
-    private static CadastroDisciplina cadastroDisciplina;
-    
+    static CadastroProfessor cadastroProfessor = new CadastroProfessor();
+    static CadastroDisciplina cadastroDisciplina = new CadastroDisciplina();
+    static CadastroAluno cadastroAluno = new CadastroAluno();
 
-    public static void setCadastros(CadastroProfessor cadProf, CadastroAluno cadAluno, CadastroDisciplina cadDisciplina) {
-        cadastroProfessor = cadProf;
-        cadastroAluno = cadAluno;
-        cadastroDisciplina = cadDisciplina;
-    }
-
-    
-    public static Turma dadosNovaTurma() throws CampoEmBrancoException, DisciplinaNaoAtribuidaException, ProfessorNaoAtribuidoException { 
+    public static Turma dadosNovaTurma() {
         String diaHora = lerNome();
         String codigo = lerCodigo();
         String semestre = lerSemestre();
         int numVagas = lerNumVagas();
         Professor professor = lerProfessor();
         Disciplina disciplina = lerDisciplina();
-        List<Aluno> alunos = lerAluno(numVagas);
+        private List<Aluno> alunos = new ArrayList<>();
         return new Turma(codigo, diaHora, semestre, numVagas, professor, disciplina, alunos);
     }
 
@@ -75,44 +67,26 @@ public class MenuTurma {
         return p;
     }
 
-    //exception disciplinaonao atrib
-    private static Disciplina lerDisciplina() throws DisciplinaNaoAtribuidaException {
+    private static Disciplina lerDisciplina() {
         String codigo = JOptionPane.showInputDialog("Informe o código da disciplina da turma: ");
+        CadastroDisciplina cadastroDisciplina = new CadastroDisciplina();
         Disciplina d = cadastroDisciplina.pesquisarDisciplina(codigo);
-        if (d == null) {
-            throw new DisciplinaNaoAtribuidaException("DISCIPLINA NAO EXISTENTE. ");
-        }
         return d;
     }
 
-
-    private static List<Aluno> lerAluno(int numVagas) {
-        List<Aluno> alunos = new ArrayList<>();
-        //int vagasRestantes = numVagas;
-        for (int i = 0;i < numVagas; i++) {
-            String matricula = JOptionPane.showInputDialog("Informe a matrícula do aluno para adicionar na turma: ");
-        
-            if (matricula.isEmpty()) {
-                break;
-            }
-            Aluno aluno = cadastroAluno.pesquisarAluno(matricula);
-            if (aluno == null) {
-                JOptionPane.showMessageDialog(null, "Aluno não encontrado.");
-                i--;
-            } else if (alunos.contains(aluno)) {
-                JOptionPane.showMessageDialog(null, "Aluno já cadastrado. ");
-                i--;
-            } else {
-                alunos.add(aluno);
-                //vagasRestantes--;
-            }
+    public List<> lerAluno() {
+        String matricula = JOptionPane.showInputDialog("Informe a matrícula do aluno para adicionar na turma: ");
+        CadastroAluno cadastroAluno = new CadastroAluno();
+        Aluno a = cadastroAluno.pesquisarAluno(matricula);
+        if (a != null) {
+            alunos.add(a);
         }
         return alunos;
     }
 
 
 
-    public static void menuTurma(CadastroTurma cadTurma) throws CampoEmBrancoException, ProfessorNaoAtribuidoException, DisciplinaNaoAtribuidaException {
+    public static void menuDisciplina(CadastroTurma cadTurma) {
         String txt = """
                 Informe a opção desejada:
                 1 - Cadastrar Turma
@@ -151,30 +125,19 @@ public class MenuTurma {
                         }
                        break;
 
-                    case 4:
-                        codigo = lerCodigo();
-                        Turma remover = cadTurma.pesquisarTurma(codigo);
-                       boolean removido = cadTurma.removerTurma(remover);
-                        if (removido) {
-                            JOptionPane.showMessageDialog(null, "Turma removida do cadastro");
-                            System.gc();
-                        }
-                    case 5:
-                        codigo = lerCodigo();
-                        cadTurma.imprimirListaPresenca(codigo);
-                    default:
-                        break;
-                }
-            } catch (ProfessorNaoAtribuidoException e) {
-                JOptionPane.showMessageDialog(null, "Nenhum Professor associado a essa turma! ");
-            //} catch (DisciplinaNaoAtribuidaException) {
-            //    JOptionPane.showMessageDialog(null, "Nenhuma Disciplina associada a essa turma! ");
-            }  catch (CampoEmBrancoException e) {
-				JOptionPane.showMessageDialog(null,
-						"Opção em branco:\nCampo " + e.getMessage() + " esta em branco, tente novamente novamente");
-			} catch (NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Opção invalida");
-				opcao = -1;
+                case 4:
+                    codigo = lerCodigo();
+                    Turma remover = cadTurma.pesquisarTurma(codigo);
+                    boolean removido = cadTurma.removerTurma(remover);
+                    if (removido) {
+                        JOptionPane.showMessageDialog(null, "Turma removida do cadastro");
+                        System.gc();
+                    }
+                case 5:
+                    codigo = lerCodigo();
+                    cadTurma.imprimirListaPresenca(codigo);
+                default:
+                    break;
             }
         } while (opcao != 0);
         return;

@@ -13,7 +13,6 @@ import view.MenuAluno;
 import view.MenuDisciplina;
 import view.MenuPrincipal;
 import view.MenuProfessor;
-import view.MenuTurma;
 
 public class Principal {
 
@@ -22,11 +21,10 @@ public class Principal {
 	static CadastroDisciplina cadDisciplina;
 	static CadastroTurma cadTurma;
 	
-	public static void main(String[] args) throws CampoEmBrancoException, ProfessorNaoAtribuidoException, DisciplinaNaoAtribuidaException {
+	public static void main(String[] args) throws CampoEmBrancoException {
 		cadAluno = new CadastroAluno();
 		cadProfessor = new CadastroProfessor();
 		cadDisciplina = new CadastroDisciplina();
-		cadTurma = new CadastroTurma();
 
 		JOptionPane.showMessageDialog(null,"""
 				hhahahha
@@ -50,12 +48,12 @@ public class Principal {
 					MenuDisciplina.menuDisciplina(cadDisciplina);
 				break;
 				case 4: 
-					MenuTurma.menuTurma(cadTurma);
+					JOptionPane.showMessageDialog(null, "Cadastro de turmas a ser implementado");
 				break;
 				case 0: 
 				break;
 				default: 
-					JOptionPane.showMessageDialog(null, "Opcao invalida");
+					JOptionPane.showMessageDialog(null, "A Opção escolhida não é válida");
 					opcao = -1;
 				break;
 			}
