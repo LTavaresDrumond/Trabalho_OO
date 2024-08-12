@@ -2,8 +2,11 @@
 
 ## Integrantes
 Arthur Sismene Carvalho - 231011892
+
 Eduardo de Almeida Morais - 231011275
+
 Heitor Fernandes Estevam - 231011453
+
 Lucas Tavares Drumond - 231011650
 
 ## Instituição
