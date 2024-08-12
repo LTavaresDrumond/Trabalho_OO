@@ -19,7 +19,8 @@ André Luiz Peron Martins Lanna
 Este é o projeto final da disciplina "Orientação a objetos". Desenvolvido em Java, este sistema permite o cadastro e gerenciamento de alunos, professores, disciplinas e turmas. O sistema inclui funcionalidades para imprimir listas de presença, além de lançar e tratar exceções específicas, garantindo robustez e integridade dos dados.
 
 ## Diagrama de classes
-COLOQUE A IMAGEM AQUI LUCÂO
+![Unknown](https://github.com/user-attachments/assets/f880ff53-3bcc-4312-94cb-08354de7b7d8)
+
 
 ## Funcionalidades Principais
 - **Cadastro de Alunos:** Permite o cadastro, pesquisa, atualização e remoção de alunos no sistema.
