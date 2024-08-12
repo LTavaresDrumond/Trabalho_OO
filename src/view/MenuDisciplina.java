@@ -17,6 +17,10 @@ public class MenuDisciplina {
         return new Disciplina(codigo, nome, cargaHoraria, creditos);
     }
 
+    private static String lerNome() {
+        return JOptionPane.showInputDialog("Informe o nome da disciplina: ");
+    }
+
     private static int lerCargaHoraria() {
         return Integer.parseInt(JOptionPane.showInputDialog("Informe a carga horária da discplina: "));
     }
@@ -27,10 +31,6 @@ public class MenuDisciplina {
 
     private static String lerCodigo() {
         return JOptionPane.showInputDialog("Informe o código da disciplina: ");
-    }
-
-    private static String lerNome() {
-        return JOptionPane.showInputDialog("Informe o nome da disciplina: ");
     }
 
     public static void menuDisciplina(CadastroDisciplina cadDisciplina) {

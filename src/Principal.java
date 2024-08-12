@@ -3,6 +3,7 @@ import javax.swing.JOptionPane;
 import cadastros.CadastroAluno;
 import cadastros.CadastroDisciplina;
 import cadastros.CadastroProfessor;
+import org.w3c.dom.ls.LSOutput;
 import view.MenuAluno;
 import view.MenuDisciplina;
 import view.MenuPrincipal;
@@ -18,6 +19,13 @@ public class Principal {
 		cadAluno = new CadastroAluno();
 		cadProfessor = new CadastroProfessor();
 		cadDisciplina = new CadastroDisciplina();
+
+		JOptionPane.showMessageDialog(null,"""
+				hhahahha
+				hhahaha
+				otario
+				haha
+				""");
 		
 		int opcao = 0; 
 		
@@ -46,6 +54,8 @@ public class Principal {
 		} while (opcao != 0);
 		return;
 	}
+
+
 
 
 }

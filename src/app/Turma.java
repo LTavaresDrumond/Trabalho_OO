@@ -43,12 +43,16 @@ public class Turma {
 		System.out.println("Destruindo objeto: " + this);
 	}
 
+    // lista de chamada!
     public String toString() {
         String resposta = "TURMA: " + disciplina + "-" + codigo + " - VAGAS: " + numVagas + '\n';
         resposta += "PROFESSOR: " + professor + '\n';
         resposta += "HORÁRIO: " + diaHora + " SEMESTRE: " + semestre + '\n';
-        //falta imprimir os alunos
+
+        for (Aluno a : alunos) {
+            int i = 1;
+            resposta += i + " - " + a.getNome() + '\n';
+        }
         return resposta;
     }
-    
 }
